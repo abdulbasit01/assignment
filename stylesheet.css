@@ -1,0 +1,48 @@
+body {
+    overflow: scroll;
+}
+
+
+table,
+thead,
+tbody,
+th,
+td,
+tr {
+    display: block;
+    overflow-y: scroll;
+}
+
+.primary {
+    color: black;
+    background-color: #0000f9;
+    border-radius: 150px;
+}
+
+.danger {
+    color: black;
+    background-color: #f90000;
+    border-radius: 150px;
+}
+
+.modal-c {
+    z-index: 9;
+    top: 0;
+}
+
+.blur {
+    filter: blur(2px);
+}
+
+#notificaion-bar {
+    opacity: 0;
+}
+
+input {
+    color: #000 !important;
+    border-radius: 12px !important;
+}
+
+input::placeholder {
+    color: rgba(67, 66, 66, 0.3);
+}
