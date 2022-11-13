@@ -46,3 +46,7 @@ input {
 input::placeholder {
     color: rgba(67, 66, 66, 0.3);
 }
+a{
+    color: #1c5cc3 !important;
+    text-decoration: none;
+}
