@@ -1,4 +1,6 @@
 function loaddata() {
+  $("#status").fadeOut();
+  $("#preloader").delay(500).fadeOut("slow");
   if (!localStorage.getItem("contact-information"))
     return insertDataIntoTable([]);
 
@@ -39,8 +41,12 @@ function insertDataIntoTable(contacts) {
           'previous': '<span class="prev-icon"><i class="fa-solid fa-arrow-left"></i></span>',
           'next': '<span class="next-icon"><i class="fa-solid fa-arrow-right"></i></span>'
         }
-      }
-
+      },
+      pageLength: 5,
+      lengthMenu: [
+        [5, 10, 15, 20, -1],
+        [5, 10, 15, 20, "All"]
+      ]
     })
     .columns.adjust();
 }

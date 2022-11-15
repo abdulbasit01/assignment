@@ -1,4 +1,5 @@
 function loadupdateformdata() {
+  preLoader()
   const queryParam = window.location.hash;
   const data = JSON.parse(localStorage.getItem("contact-information"));
   for (let index = 0; index < data.length; index++) {
@@ -13,6 +14,7 @@ function loadupdateformdata() {
   }
 }
 function loaddata() {
+  preLoader()
   if (!localStorage.getItem("contact-information")) return [];
   return JSON.parse(localStorage.getItem("contact-information"));
 }
@@ -76,4 +78,8 @@ function showNotification(val) {
   }, 4000, function () {
     $(this).hide("slow");
   });
+}
+function preLoader() {
+  $("#status").fadeOut();
+  $("#preloader").delay(500).fadeOut("slow");
 }
