@@ -11,21 +11,22 @@ function insertDataIntoTable(contacts) {
   const tableBody = document.getElementById("table-body");
   contacts.forEach((element, index) => {
     const parentRow = document.createElement("tr");
-    const parentColEmail = document.createElement("td");
-    parentColEmail.innerHTML = `<a href="mailto:${element.emailaddress}">${element.emailaddress}</a>`;
-    const parentColPhone = document.createElement("td");
-    parentColPhone.innerHTML = `<a href="tel:${element.phonenumber}">${element.phonenumber}</a>`;
+    const nameColPhone = document.createElement("td");
+    nameColPhone.innerHTML = `${element.FName} ${element.LName}`
     const parentColAction = document.createElement("td");
     const deleteBtn = document.createElement("i");
     const editBtn = document.createElement("i");
+    const details = document.createElement("i");
     deleteBtn.setAttribute("class", "fa-solid fa-trash-can text-dark mx-2 btn btn-danger btn-sm");
     deleteBtn.setAttribute("onclick", "toggleModal(" + element.contactId + ")");
     parentColAction.appendChild(deleteBtn);
     editBtn.setAttribute("class", "fa-solid mx-2 btn btn-secondary btn-sm fa-pen-to-square");
     editBtn.setAttribute("onclick", "editFn(" + element.contactId + ")");
     parentColAction.appendChild(editBtn);
-    parentRow.appendChild(parentColEmail);
-    parentRow.appendChild(parentColPhone);
+    details.setAttribute("class", "fa-solid fa-circle-info text-dark mx-2 btn btn-primary btn-sm")
+    details.setAttribute("onclick", "detailsFn(" + element.contactId + ")")
+    parentColAction.appendChild(details)
+    parentRow.appendChild(nameColPhone);
     parentRow.appendChild(parentColAction);
     parentRow.setAttribute("class", "border m-1 text-center");
     tableBody.appendChild(parentRow);
@@ -59,18 +60,26 @@ function toggleModal(id) {
   document.getElementById('main-c-table').classList.toggle("blur")
 }
 function editFn(data) {
-  window.location = "/editcontat.html#" + data;
+  window.location = "editcontat.html#" + data;
 }
 function deleteFn() {
   const actionmodal = document.getElementById("actionmodal");
   const filterData = JSON.parse(
     localStorage.getItem("contact-information")
   ).filter((data) => {
-    console.log(data.contactId, actionmodal.getAttribute("delete-action-id"));
-    if (data.contactId !== +actionmodal.getAttribute("delete-action-id")) {
+    if (data.contactId != +actionmodal.getAttribute("delete-action-id")) {
       return data;
     }
   });
   localStorage.setItem("contact-information", JSON.stringify(filterData));
   window.location.reload();
 }
+function detailsFn(data) {
+  window.location = "details.html#" + data;
+}
+
+document.getElementById("Edit-btn").addEventListener('click', (event) => {
+  editFn(window.location.hash.substring(1))
+})
+document.getElementById("Delete-btn").addEventListener('click', (event) => {
+})

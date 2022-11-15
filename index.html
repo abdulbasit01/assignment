@@ -25,6 +25,18 @@
     <div data-role="content">
       <h3 class="text-center">Add New Contact</h3>
       <form onsubmit="addContact(this)" method="post">
+        <label data-theme="d" for="FName">First Name</label>
+        <input type="text" placeholder="John Doe" name="FName" />
+        <p class="text-danger d-none" id="FName">
+          First Name is required
+        </p>
+
+        <label data-theme="d" for="LName">Last Name</label>
+        <input type="text" placeholder="John Doe" name="LName" />
+        <p class="text-danger d-none" id="LName">
+          Last Name is required
+        </p>
+
         <label data-theme="d" for="phonenumber">Phone Number</label>
         <input type="text" placeholder="+44 7700 900077" name="phonenumber" />
         <p class="text-danger d-none" id="phonenumber">

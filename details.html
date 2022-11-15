@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+    <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Contact App</title>
+</head>
+
+<body onload="loadupdateformdata()">
+    <div data-role="page">
+        <div data-role="header" class="px-5">
+            <div class="d-flex justify-content-between">
+                <h4 onclick="window.location='./index.html'">Contact App</h4>
+                <h4 class="text-light pointer" onclick="window.location='./listing.html'">
+                    Contacts
+                </h4>
+            </div>
+        </div>
+
+        <div data-role="content" id="delete-action-id">
+            <label>First Name</label>
+            <input readonly type="text" class="rounded-0 shadow-none w-75 border-0 bg-transparent"
+                placeholder="John Doe" name="FName" id="FName" />
+            <label>Last Name</label>
+
+            <input readonly type="text" class="rounded-0 shadow-none w-75 border-0 bg-transparent"
+                placeholder="John Doe" name="LName" id="LName" />
+            <label>Phone Number</label>
+            <div class="d-flex justify-content-between align-items-center">
+                <input readonly type="text" class="rounded-0 shadow-none w-75 border-0 bg-transparent"
+                    placeholder="+44 7700 900077" name="phonenumber" id="phonenumber" />
+                <i class="fa-solid fa-phone" title="Call"></i>
+                <i class="fa-regular fa-message" title="Send Message"></i>
+            </div>
+            <label>Email Address</label>
+
+            <input type="email" placeholder="johndoe@contact.com"
+                class="rounded-0 shadow-none w-75 border-0 bg-transparent" name="emailaddress" id="emailaddress" />
+            <input readonly type="text" class="rounded-0 shadow-none w-75 border-0 bg-transparent" hidden
+                placeholder="contactId" name="contactId" id="contactId" />
+        </div>
+        <div class="d-flex justify-content-around">
+            <span class="Action Buttons btn-lg btn btn-primary" id="Edit-btn">Edit</span>
+            <span class="Action Buttons btn-lg btn btn-danger" id="Delete-btn">Delete</span>
+        </div>
+
+    </div>
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+
+</body>
+<script src="./script.js"></script>
+<script src="./listng.js"></script>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $(".ui-loader").hide();
+        }, 10);
+    });
+</script>
+
+</html>

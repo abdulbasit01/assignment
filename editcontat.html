@@ -27,21 +27,20 @@
     <div data-role="content">
       <h3 class="text-center">Add New Contact</h3>
       <form onsubmit="updateContact(this)" method="post">
+        <label data-theme="d" for="FName">FName</label>
+        <input type="text" placeholder="John Doe" name="FName" id="FName" />
+        <label data-theme="d" for="LName">LName</label>
+        <input type="text" placeholder="John Doe" name="LName" id="LName" />
         <label data-theme="d" for="phonenumber">Phone Number</label>
         <input type="text" placeholder="+44 7700 900077" name="phonenumber" id="phonenumber" />
-        <p class="text-danger d-none" id="phonenumber">
-          Phone Number is required
-        </p>
-
         <label data-theme="d" for="emailaddress">Email Address</label>
         <input type="email" placeholder="johndoe@contact.com" name="emailaddress" id="emailaddress" />
         <input type="text" hidden placeholder="contactId" name="contactId" id="contactId" />
-        <p class="text-danger d-none" id="emailaddress">Email is required</p>
         <input type="submit" value="Submit" />
       </form>
     </div>
     <div class="text-center w-75 m-auto bg-warning rounded border fw-bold" id="notificaion-bar">
-      Contact updated
+      Save
     </div>
   </div>
   <div id="preloader">

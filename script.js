@@ -4,12 +4,14 @@ function loadupdateformdata() {
   const data = JSON.parse(localStorage.getItem("contact-information"));
   for (let index = 0; index < data.length; index++) {
     if (data[index].contactId == queryParam.substring(1)) {
-      console.log(data[index]);
       document.getElementById("phonenumber").defaultValue =
         data[index].phonenumber;
       document.getElementById("emailaddress").defaultValue =
         data[index].emailaddress;
-      document.getElementById("contactId").defaultValue = data[index].contactId;
+      document.getElementById("FName").defaultValue =
+        data[index].FName;
+      document.getElementById("LName").defaultValue =
+        data[index].LName;
     }
   }
 }
@@ -18,7 +20,11 @@ function loaddata() {
   if (!localStorage.getItem("contact-information")) return [];
   return JSON.parse(localStorage.getItem("contact-information"));
 }
-
+function loadParticularContactDetails(params) {
+  preLoader()
+  const queryParam = window.location.hash;
+  const data = JSON.parse(localStorage.getItem("contact-information"));
+}
 function addContact(val) {
   const formData = new FormData(val);
   let jsonContact = {};
@@ -39,6 +45,7 @@ function addContact(val) {
       "contact-information",
       JSON.stringify([...loaddata(), jsonContact])
     );
+    val.reset();
     showNotification(val)
   }
 }
@@ -72,7 +79,6 @@ function updateContact(val) {
 }
 
 function showNotification(val) {
-  val.reset();
   $("#notificaion-bar").show().animate({
     opacity: 1,
   }, 4000, function () {
