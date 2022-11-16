@@ -1,5 +1,6 @@
 function loadupdateformdata() {
   preLoader();
+  document.getElementById('form-update').addEventListener('submit', updateContact)
   const queryParam = window.location.hash;
   const data = JSON.parse(localStorage.getItem("contact-information"));
   for (let index = 0; index < data.length; index++) {
@@ -11,11 +12,13 @@ function loadupdateformdata() {
       document.getElementById("emailaddress").defaultValue =
         data[index].emailaddress;
       document.getElementById("contactId").defaultValue = data[index].contactId;
+      document.getElementById("timeStamp").defaultValue = data[index].timeStamp;
     }
   }
 }
 function loaddata() {
   preLoader();
+  document.getElementById('form-add').addEventListener('submit', addContact)
   if (!localStorage.getItem("contact-information")) return [];
   return JSON.parse(localStorage.getItem("contact-information"));
 }
@@ -40,40 +43,36 @@ function loaddetailsdata() {
     }
   }
 }
-function addContact(val) {
+function addContact(event) {
+  event.preventDefault();
   const jsonContact = {
     fname: document.getElementById("fname").value,
     lname: document.getElementById("lname").value,
     phonenumber: document.getElementById("phonenumber").value,
     emailaddress: document.getElementById("emailaddress").value,
     contactId: loaddata().length + 1,
+    timeStamp: new Date()
   };
-  const errorIds = {
-    fname: "fname-error",
-    lname: "lname-error",
-    phonenumber: "phone-error",
-    emailaddress: "email-error",
-  };
-  errorChecking(jsonContact, errorIds);
   localStorage.setItem(
     "contact-information",
     JSON.stringify([...loaddata(), jsonContact])
   );
-  showNotification(val);
+  showNotification();
+  event.target.reset()
+  return true
 }
 
-function errorChecking(values, keys) {
-  
-}
-function updateContact(val) {
-  const formData = new FormData(val);
-  let jsonContact = {};
-  for (const [key, value] of formData.entries()) {
-    jsonContact = {
-      ...jsonContact,
-      [key]: value,
-    };
-  }
+function updateContact(event) {
+  event.preventDefault();
+  const jsonContact = {
+    fname: document.getElementById("fname").value,
+    lname: document.getElementById("lname").value,
+    phonenumber: document.getElementById("phonenumber").value,
+    emailaddress: document.getElementById("emailaddress").value,
+    contactId: +document.getElementById("contactId").value,
+    timeStamp: document.getElementById("timeStamp").value,
+  };
+  console.log(jsonContact);
   const data = JSON.parse(localStorage.getItem("contact-information"));
   const tempData = [jsonContact];
   for (let index = 0; index < data.length; index++) {
@@ -82,10 +81,10 @@ function updateContact(val) {
     }
   }
   localStorage.setItem("contact-information", JSON.stringify(tempData));
-  showNotification(val);
+  showNotification();
 }
 
-function showNotification(val) {
+function showNotification() {
   $("#notificaion-bar")
     .show()
     .animate(

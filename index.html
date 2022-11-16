@@ -1,98 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="stylesheet.css" />
-    <title>Contact App</title>
-  </head>
 
-  <body onload="loaddata()">
-    <div data-role="page">
-      <div data-role="header" class="px-5">
-        <div class="d-flex justify-content-between">
-          <h4 onclick="window.location='./index.html'">Contact App</h4>
-          <h4
-            class="text-light pointer"
-            onclick="window.location='./listing.html'"
-          >
-            Contacts
-          </h4>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="stylesheet.css" />
+  <title>Contact App</title>
+</head>
+
+<body onload="loaddata()">
+  <div data-role="page">
+    <div data-role="header" class="px-5">
+      <div class="d-flex justify-content-between">
+        <h4 onclick="window.location='./index.html'" class="btn btn-dark shdaow-sm mt-2">Contact App</h4>
+        <h4 class="text-light pointer btn btn-dark shdaow-sm mt-2" onclick="window.location='./listing.html'">
+          Contacts
+        </h4>
       </div>
-      <div data-role="content">
+    </div>
+    <div data-role="content">
+      <form method="post" id="form-add">
         <h3 class="text-center">Add New Contact</h3>
         <label data-theme="d" for="fname">Frst Name</label>
-        <input
-          minlength="2"
-          type="text"
-          placeholder="John"
-          name="fname"
-          id="fname"
-        />
+        <input required minlength="2" type="text" placeholder="John" name="fname" id="fname" />
         <p id="fname-error" class="text-danger fw-bold d-none"></p>
         <label data-theme="d" for="lname">Last Name</label>
-        <input type="text" placeholder="Doe" name="lname" id="lname" />
+        <input required type="text" placeholder="Doe" name="lname" id="lname" />
         <p id="lname-error" class="text-danger fw-bold d-none"></p>
 
         <label data-theme="d" for="phonenumber">Phone Number</label>
-        <input
-          type="text"
-          placeholder="+44 7700 900077"
-          name="phonenumber"
-          id="phonenumber"
-        />
+        <input required type="text" minlength="11" maxlength="11"
+          onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="+44 7700 900077"
+          name="phonenumber" id="phonenumber" />
         <p id="phone-error" class="text-danger fw-bold d-none"></p>
 
         <label data-theme="d" for="emailaddress">Email Address</label>
-        <input
-          type="email"
-          placeholder="johndoe@contact.com"
-          name="emailaddress"
-          id="emailaddress"
-        />
+        <input required type="email" placeholder="johndoe@contact.com" name="emailaddress" id="emailaddress" />
         <p id="email-error" class="text-danger fw-bold d-none"></p>
 
-        <input type="submit" value="Add Contact" onclick="addContact()" />
-      </div>
-      <div
-        class="text-center w-75 m-auto bg-success rounded border fw-bold"
-        id="notificaion-bar"
-      >
-        Contact successfully saved
-      </div>
+        <input type="submit" value="Add Contact" />
+      </form>
     </div>
-    <div id="preloader">
-      <div id="status">&nbsp;</div>
+    <div class="text-center w-75 m-auto bg-success rounded border fw-bold" id="notificaion-bar">
+      Contact successfully saved
     </div>
-  </body>
-  <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-  <script src="https://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+  </div>
+  <div id="preloader">
+    <div id="status">&nbsp;</div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 
-  <script src="./script.js"></script>
-  <script>
-    $(document).ready(function () {
-      setTimeout(function () {
-        $(".ui-loader").hide();
-      }, 10);
-    });
-  </script>
+<script src="./script.js"></script>
+<script>
+  $(document).ready(function () {
+    setTimeout(function () {
+      $(".ui-loader").hide();
+    }, 10);
+  });
+</script>
+
 </html>
