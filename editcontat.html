@@ -1,59 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <title>Contact App</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-  <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-  <script src="https://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-  <link rel="stylesheet" href="stylesheet.css" />
-  <title>Contact App</title>
-</head>
+  <body onload="loadupdateformdata()">
+    <div data-role="page">
+      <div data-role="header" class="px-5">
+        <div class="d-flex justify-content-between">
+          <h4 onclick="window.location='./index.html'">Contact App</h4>
+          <h4
+            class="text-light pointer"
+            onclick="window.location='./listing.html'"
+          >
+            Contacts
+          </h4>
+        </div>
+      </div>
+      <div data-role="content">
+        <h3 class="text-center">Edit Contact</h3>
+        <form onsubmit="updateContact(this)" method="post">
+          <label data-theme="d" for="fname">Frst Name</label>
+          <input
+            type="text"
+            placeholder="John"
+            name="fname"
+            id="fname"
+            data-attr="fname"
+          />
+          <label data-theme="d" for="lname">Last Name</label>
+          <input
+            type="text"
+            placeholder="Doe"
+            name="lname"
+            id="lname"
+            data-attr="lname"
+          />
+          <label data-theme="d" for="phonenumber">Phone Number</label>
+          <input
+            type="text"
+            placeholder="+44 7700 900077"
+            name="phonenumber"
+            id="phonenumber"
+          />
 
-<body onload="loadupdateformdata()">
-  <div data-role="page">
-    <div data-role="header" class="px-5">
-      <div class="d-flex justify-content-between">
-        <h4 onclick="window.location='./index.html'">Contact App</h4>
-        <h4 class="text-light pointer" onclick="window.location='./listing.html'">
-          Contacts
-        </h4>
+          <label data-theme="d" for="emailaddress">Email Address</label>
+          <input
+            type="email"
+            placeholder="johndoe@contact.com"
+            name="emailaddress"
+            id="emailaddress"
+          />
+          <input
+            type="text"
+            hidden
+            placeholder="contactId"
+            name="contactId"
+            id="contactId"
+          />
+          <input type="submit" value="Save" />
+        </form>
+      </div>
+      <div
+        class="text-center w-75 m-auto bg-warning rounded border fw-bold"
+        id="notificaion-bar"
+      >
+        Contact updated
       </div>
     </div>
-    <div data-role="content">
-      <h3 class="text-center">Add New Contact</h3>
-      <form onsubmit="updateContact(this)" method="post">
-        <label data-theme="d" for="FName">FName</label>
-        <input type="text" placeholder="John Doe" name="FName" id="FName" />
-        <label data-theme="d" for="LName">LName</label>
-        <input type="text" placeholder="John Doe" name="LName" id="LName" />
-        <label data-theme="d" for="phonenumber">Phone Number</label>
-        <input type="text" placeholder="+44 7700 900077" name="phonenumber" id="phonenumber" />
-        <label data-theme="d" for="emailaddress">Email Address</label>
-        <input type="email" placeholder="johndoe@contact.com" name="emailaddress" id="emailaddress" />
-        <input type="text" hidden placeholder="contactId" name="contactId" id="contactId" />
-        <input type="submit" value="Submit" />
-      </form>
+    <div id="preloader">
+      <div id="status">&nbsp;</div>
     </div>
-    <div class="text-center w-75 m-auto bg-warning rounded border fw-bold" id="notificaion-bar">
-      Save
-    </div>
-  </div>
-  <div id="preloader">
-    <div id="status">&nbsp;</div>
-  </div>
-</body>
-<script src="./script.js"></script>
-<script>
-  $(document).ready(function () {
-    setTimeout(function () {
-      $(".ui-loader").hide();
-    }, 10);
-  });
-</script>
-
+  </body>
+  <script src="./script.js"></script>
+  <script>
+    $(document).ready(function () {
+      setTimeout(function () {
+        $(".ui-loader").hide();
+      }, 10);
+    });
+  </script>
 </html>

@@ -6,11 +6,30 @@ body {
 table,
 thead,
 tbody,
-th,
 td,
 tr {
     display: block;
     overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: transparent;
 }
 
 .primary {
@@ -73,4 +92,8 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     margin: -100px 0 0 -100px;
+}
+
+select.select-op-filter {
+    width: 200px !important;
 }
