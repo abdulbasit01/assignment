@@ -1,4 +1,4 @@
-const stateData = JSON.parse(localStorage.getItem("contact-information"))
+const stateData = JSON.parse(localStorage.getItem("contact-information")) ?? [];
 function loaddata() {
   $("#status").fadeOut();
   $("#preloader").delay(500).fadeOut("slow");
@@ -102,27 +102,69 @@ function deleteFn() {
 }
 function filterContacts(val) {
   if (val.value == "new") {
-    const now = new Date().getTime()
+    const now = new Date().getTime();
     const newData = stateData.filter((data) => {
-      const thatTime = new Date(data.timeStamp).getTime()
-      const difference = now - thatTime
+      const thatTime = new Date(data.timeStamp).getTime();
+      const difference = now - thatTime;
       if (difference < 3600000) {
-        return data
+        return data;
       }
-    })
-    showNewContacts(newData)
-    $("#contact-tables_wrapper").addClass("d-none")
+    });
+    showNewContacts(newData);
+    $("#contact-tables_wrapper").addClass("d-none");
   } else {
-    $("#contact-tables_wrapper").removeClass("d-none")
+    $("#contact-tables_wrapper").removeClass("d-none");
   }
 }
 function showNewContacts(contacts) {
-  const newContactsBodyCard = document.getElementById("new-contact-card")
+  const newContactsBodyCard = document.getElementById("new-contact-card");
+  if (contacts.length < 1) {
+    newContactsBodyCard.innerHTML = "No New Contact Found";
+    return;
+  }
+  newContactsBodyCard.innerHTML = "";
   contacts.forEach((contact) => {
-    const cbody = document.createElement('div')
-    cbody.setAttribute("class", "card-body")
-    cbody.innerHTML = `${contact.fname} ${contact.lname}`
-    newContactsBodyCard.appendChild(cbody)
-  })
-
+    const parentRow = document.createElement("tr");
+    const parentColName = document.createElement("td");
+    parentColName.innerHTML = `${contact.fname} ${contact.lname}`;
+    parentColName.setAttribute(
+      "onclick",
+      "changeLoc(" + contact.contactId + ",'details.html')"
+    );
+    const parentColAction = document.createElement("td");
+    const deleteBtn = document.createElement("i");
+    const editBtn = document.createElement("i");
+    const detailsBtn = document.createElement("i");
+    deleteBtn.setAttribute(
+      "class",
+      "fa-solid fa-trash-can text-dark mx-2 btn btn-danger btn-sm"
+    );
+    deleteBtn.setAttribute("onclick", "toggleModal(" + contact.contactId + ")");
+    deleteBtn.setAttribute("title", "Click to delete this contact");
+    parentColAction.appendChild(deleteBtn);
+    detailsBtn.setAttribute(
+      "class",
+      "fa-solid fa-user text-dark mx-2 btn btn-success btn-sm"
+    );
+    detailsBtn.setAttribute("title", "Click to view details");
+    detailsBtn.setAttribute(
+      "onclick",
+      "changeLoc(" + contact.contactId + ",'details.html')"
+    );
+    parentColAction.appendChild(detailsBtn);
+    editBtn.setAttribute(
+      "class",
+      "fa-solid mx-2 btn btn-secondary btn-sm fa-pen-to-square"
+    );
+    editBtn.setAttribute(
+      "onclick",
+      "changeLoc(" + contact.contactId + ",'editcontat.html')"
+    );
+    editBtn.setAttribute("title", "Click to update this contact");
+    parentColAction.appendChild(editBtn);
+    parentRow.appendChild(parentColName);
+    parentRow.appendChild(parentColAction);
+    parentRow.setAttribute("class", "border m-1 text-center");
+    newContactsBodyCard.appendChild(parentRow);
+  });
 }
