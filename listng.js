@@ -1,10 +1,11 @@
+const stateData = JSON.parse(localStorage.getItem("contact-information"))
 function loaddata() {
   $("#status").fadeOut();
   $("#preloader").delay(500).fadeOut("slow");
   if (!localStorage.getItem("contact-information"))
     return insertDataIntoTable([]);
 
-  insertDataIntoTable(JSON.parse(localStorage.getItem("contact-information")));
+  insertDataIntoTable(stateData);
 }
 
 function insertDataIntoTable(contacts) {
@@ -98,4 +99,30 @@ function deleteFn() {
   });
   localStorage.setItem("contact-information", JSON.stringify(filterData));
   window.location = "listing.html";
+}
+function filterContacts(val) {
+  if (val.value == "new") {
+    const now = new Date().getTime()
+    const newData = stateData.filter((data) => {
+      const thatTime = new Date(data.timeStamp).getTime()
+      const difference = now - thatTime
+      if (difference < 3600000) {
+        return data
+      }
+    })
+    showNewContacts(newData)
+    $("#contact-tables_wrapper").addClass("d-none")
+  } else {
+    $("#contact-tables_wrapper").removeClass("d-none")
+  }
+}
+function showNewContacts(contacts) {
+  const newContactsBodyCard = document.getElementById("new-contact-card")
+  contacts.forEach((contact) => {
+    const cbody = document.createElement('div')
+    cbody.setAttribute("class", "card-body")
+    cbody.innerHTML = `${contact.fname} ${contact.lname}`
+    newContactsBodyCard.appendChild(cbody)
+  })
+
 }
