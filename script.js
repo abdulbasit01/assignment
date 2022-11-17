@@ -99,7 +99,7 @@ function showNotification() {
 }
 function preLoader() {
   $("#status").fadeOut();
-  $("#preloader").delay(500).fadeOut("slow");
+  $("#preloader").delay(200).fadeOut("slow");
 }
 
 function deleteFnOfDetPage() {

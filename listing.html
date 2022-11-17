@@ -39,11 +39,11 @@
         <div class="row">
           <div class="col-lg-6">
             <label for="New">Show New Contacts</label>
-            <input type="radio" id="New" name="filter" />
+            <input type="radio" id="New" value="new" name="filter" onchange="filterContacts(this)" />
           </div>
           <div class="col-lg-6">
             <label for="All">All Contact</label>
-            <input type="radio" id="All" name="filter" />
+            <input type="radio" id="All" value="all" name="filter" onchange="filterContacts(this)" />
           </div>
         </div>
       </div>
@@ -56,6 +56,9 @@
         </thead>
         <tbody id="table-body"></tbody>
       </table>
+      <div class="card w-100" id="new-contact-card">
+
+      </div>
     </div>
     <div class="row text-center">
       <div class="">
