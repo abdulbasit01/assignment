@@ -101,6 +101,8 @@ function deleteFn() {
   window.location = "listing.html";
 }
 function filterContacts(val) {
+  const newContactsBodyCard = document.getElementById("new-contact-card");
+
   if (val.value == "new") {
     const now = new Date().getTime();
     const newData = stateData.filter((data) => {
@@ -113,6 +115,7 @@ function filterContacts(val) {
     showNewContacts(newData);
     $("#contact-tables_wrapper").addClass("d-none");
   } else {
+    newContactsBodyCard.innerHTML = "";
     $("#contact-tables_wrapper").removeClass("d-none");
   }
 }
